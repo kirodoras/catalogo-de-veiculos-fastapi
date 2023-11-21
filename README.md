@@ -36,11 +36,53 @@ Este é um backend desenvolvido em Python usando FastAPI, que oferece funcionali
      ```
 
 #### Rotas de Gerenciamento de Veículos
-- `POST /`: Cria um novo registro de veículo.
-- `GET /`: Recupera todos os registros de veículos.
-- `GET /{Veiculo_id}`: Recupera os detalhes de um veículo específico com base no ID.
-- `PUT /{Veiculo_id}`: Atualiza os detalhes de um veículo específico com base no ID.
-- `DELETE /{Veiculo_id}`: Remove um veículo específico com base no ID.
+- `GET /api/v1/veiculos/`: Recupera todos os registros de veículos.
+- Exemplo de Requisição:
+    ```
+    GET http://localhost:8000/api/v1/veiculos/
+    ```
+- `GET /api/v1/veiculos/{Veiculo_id}`: Recupera os detalhes de um veículo específico com base no ID.
+- Exemplo de Requisição:
+    ```
+    GET http://localhost:8000/api/v1/veiculos/1
+    PATH:{Veiuclo_id}
+    ```
+- `POST /api/v1/veiculos/`: Cria um novo registro de veículo. (Rota protegida)
+- Exemplo de Requisição:
+    ```
+    POST http://localhost:8000/api/v1/veiculos/
+    HEADER: x-authorization: Bearer {token}
+    BODY: {
+        "nome": "Fusca",
+        "marca": "Volkswagen",
+        "modelo": "Fusco",
+        "foto": "https://...",
+    }
+    ```
+- `PUT /{Veiculo_id}`: Atualiza os detalhes de um veículo específico com base no ID. (Rota protegida)
+- Exemplo de Requisição:
+    ```
+    PUT http://localhost:8000/api/v1/veiculos/1
+    PATH:{Veiuclo_id}
+    HEADER: x-authorization: Bearer {token}
+    BODY: {
+        "nome": "Fusca",
+        "marca": "Volkswagen",
+        "modelo": "Fusco",
+        "foto": "https://...",
+    }
+    ```
+- `DELETE /{Veiculo_id}`: Remove um veículo específico com base no ID. (Rota protegida)
+- Exemplo de Requisição:
+    ```
+    DELETE http://localhost:8000/api/v1/veiculos/1
+    PATH:{Veiuclo_id}
+    HEADER: x-authorization: Bearer {token}
+    ```
 
 #### Rotas de Autenticação e Verificação de Token
 - `POST /token`: Rota para autenticação e geração de um token JWT.
+   - Exemplo de Requisição:
+    ```
+    POST http://localhost:8000/api/v1/admin/token?username=admin&password=admin
+    ```
